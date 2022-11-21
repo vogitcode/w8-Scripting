@@ -10,7 +10,9 @@ public class Controller : MonoBehaviour
 
     private GameObject ObjectA;
     private Rigidbody RigidbodyA;
+
     private GameObject ObjectB;
+    private List<GameObject> ObjectBs;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +20,7 @@ public class Controller : MonoBehaviour
         ObjectA = Instantiate(PrefabObjectA, new Vector3(0, Random.Range(10.0f, 20.0f), 0), Quaternion.identity);
         RigidbodyA = ObjectA.GetComponent<Rigidbody>();
         RigidbodyA.useGravity = false;
-
-        //bool useGravity = ObjectA.GetComponent<Rigidbody>().useGravity;
-        //useGravity = false;
+        ObjectBs = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -28,8 +28,8 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            RigidbodyA.AddForce(Vector3.left * velocity);
-            //ObjectA.transform.position += Vector3.left;
+            //RigidbodyA.AddForce(Vector3.left * velocity);
+            ObjectA.transform.position += Vector3.left;
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
@@ -45,8 +45,21 @@ public class Controller : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            ObjectB = Instantiate(PrefabObjectB, new Vector3(10.0f, Random.Range(5.0f, 10.0f), 0), Quaternion.identity);
-            //Destruction(ObjectA);
+            ObjectB = Instantiate(PrefabObjectB, new Vector3(Random.Range(5.0f, 20.0f), 10.0f, 0), Quaternion.identity);
+            ObjectBs.Add(ObjectB);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            int count = ObjectBs.Count;
+            if (count != 0)
+            {
+                int rng = Random.Range(0, count);
+                if (rng >= 0)
+                {
+                    Destruction(ObjectBs[rng]);
+                    ObjectBs.RemoveAt(rng);
+                }
+            }
         }
     }
 
