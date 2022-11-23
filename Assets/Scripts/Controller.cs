@@ -6,7 +6,6 @@ public class Controller : MonoBehaviour
 {
     public GameObject PrefabObjectA;
     public GameObject PrefabObjectB;
-    public float velocity = 10.0f;
 
     private GameObject ObjectA;
     private Rigidbody RigidbodyA;
@@ -26,26 +25,9 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            //RigidbodyA.AddForce(Vector3.left * velocity);
-            ObjectA.transform.position += Vector3.left;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            ObjectA.transform.position += Vector3.right;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            ObjectA.transform.position += Vector3.down;
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            ObjectA.transform.position += Vector3.up;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ObjectB = Instantiate(PrefabObjectB, new Vector3(Random.Range(5.0f, 20.0f), 10.0f, 0), Quaternion.identity);
+            ObjectB = Instantiate(PrefabObjectB, new Vector3(Random.Range(5.0f, 20.0f), Random.Range(10.0f, 19.0f), Random.Range(5.0f, 20.0f)), Quaternion.identity);
             ObjectBs.Add(ObjectB);
         }
         else if (Input.GetKeyDown(KeyCode.Q))

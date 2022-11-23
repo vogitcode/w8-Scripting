@@ -13,6 +13,13 @@ public class ObjectB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+
+        }
     }
 }
