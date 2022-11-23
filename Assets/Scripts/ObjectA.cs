@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class ObjectA : MonoBehaviour
 {
+    public Vector3 _rotation;
+    public float rotate_speed;
+
     public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
+        _rotation = new Vector3(1, 0, 0);
+        rotate_speed = 45.0f;
         speed = 10.0f;
     }
 
@@ -20,7 +25,7 @@ public class ObjectA : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-
+            transform.Rotate(_rotation * rotate_speed * Time.deltaTime);
         }
         else if (Input.GetKeyDown(KeyCode.M))
         {

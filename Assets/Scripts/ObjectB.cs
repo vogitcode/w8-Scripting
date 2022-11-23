@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectB : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,8 @@ public class ObjectB : MonoBehaviour
         {
 
         }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-
-        }
+        
     }
+
+
 }

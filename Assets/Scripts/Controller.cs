@@ -8,10 +8,10 @@ public class Controller : MonoBehaviour
     public GameObject PrefabObjectB;
 
     private GameObject ObjectA;
-    private Rigidbody RigidbodyA;
-
     private GameObject ObjectB;
     private List<GameObject> ObjectBs;
+
+    private Rigidbody RigidbodyA;
 
     // Start is called before the first frame update
     void Start()
@@ -27,26 +27,36 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ObjectB = Instantiate(PrefabObjectB, new Vector3(Random.Range(5.0f, 20.0f), Random.Range(10.0f, 19.0f), Random.Range(5.0f, 20.0f)), Quaternion.identity);
+            ObjectB = Instantiate(PrefabObjectB, new Vector3(Random.Range(-15.0f, 10.0f), Random.Range(10.0f, (10.0f + 19120223.0f % 10.0f)), Random.Range(-10.0f, 15.0f)), Quaternion.identity);
             ObjectBs.Add(ObjectB);
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            int count = ObjectBs.Count;
-            if (count != 0)
-            {
-                int rng = Random.Range(0, count);
-                if (rng >= 0)
-                {
-                    Destruction(ObjectBs[rng]);
-                    ObjectBs.RemoveAt(rng);
-                }
-            }
+            float waitTime = 2.0f;
+            StartCoroutine(DelayDeleteAction(waitTime));
         }
+        
+
     }
 
     void Destruction(GameObject gameObject)
     {
         Destroy(gameObject);
+    }
+
+    private IEnumerator DelayDeleteAction(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        int count = ObjectBs.Count;
+        if (count != 0)
+        {
+            int rng = Random.Range(0, count);
+            if (rng >= 0)
+            {
+                Destruction(ObjectBs[rng]);
+                ObjectBs.RemoveAt(rng);
+            }
+        }
     }
 }
